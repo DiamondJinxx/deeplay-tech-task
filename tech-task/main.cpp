@@ -31,8 +31,8 @@ int main()
 
     Board b;
     MainGame mg;
-
-    for(size_t turn = 0; turn < 9 && mg.run(); ++turn) {
+    size_t turn = 0;
+    for(; turn < 9 && mg.run(); ++turn) {
            if(turn % 2 == 0)
            {
                mg.firstGamerStep();
@@ -44,5 +44,6 @@ int main()
            }
        }
      mg.printBoard();
+    mg.save(mg.saveFileName_,1,mg.winner_, turn);
     return 0;
 }

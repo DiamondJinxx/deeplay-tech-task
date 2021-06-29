@@ -5,6 +5,7 @@ MainGame::MainGame()
     g_ = Gamer::getGamer(1);
     sg_ = SmartGamer::getGamer(-1);
     b_.clear();
+    saveFileName_ = "game_data.csv";
 }
 
 void MainGame::step() // one step of game
@@ -54,6 +55,7 @@ bool MainGame::win(int gamerSymbol) // check win of gamer
     bool d2 = (b_.map.at(2) == gamerSymbol) && (b_.map.at(4) == gamerSymbol) && (b_.map.at(6) == gamerSymbol);
     bool result = (r1 || r2 || r3 || c1 || c2 || c3 || d1 || d2);
     std::cout << "gamer " << b_.gridSymbol(gamerSymbol) << " winning? " << (result ? "Yes" : "No") << std::endl;
+    result == true ? (winner_ = gamerSymbol):(winner_ = 0);
     return result;
 }
 
@@ -75,4 +77,24 @@ void MainGame::printBoard()
 bool MainGame::run()
 {
     return (!gameover() && !win(g_->getSymbol()) && !win(sg_->getSymbol()));
+}
+
+bool MainGame::save(std::string fn, int part_number, int winner, int steps)
+{
+    bool result;
+    std::ofstream outf(fn, std::ios::app);
+    if(!outf.is_open())
+    {
+        std::cerr << "Can't open file. Cancel operation\n";
+        result =  false;
+    }
+    else
+    {
+        outf << part_number << ";";
+        for(auto n : b_.map)
+            outf << n << ";";
+        outf << winner << ";" << steps << "\n";
+        result = true;
+    }
+    return result;
 }
