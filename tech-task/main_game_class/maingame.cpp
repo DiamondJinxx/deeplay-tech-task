@@ -53,7 +53,7 @@ bool MainGame::win(int gamerSymbol) // check win of gamer
     bool d1 = (b_.map.at(0) == gamerSymbol) && (b_.map.at(4) == gamerSymbol) && (b_.map.at(8) == gamerSymbol);
     bool d2 = (b_.map.at(2) == gamerSymbol) && (b_.map.at(4) == gamerSymbol) && (b_.map.at(6) == gamerSymbol);
     bool result = (r1 || r2 || r3 || c1 || c2 || c3 || d1 || d2);
-    std::cout << "gamer " << gamerSymbol << " winning? " << result << std::endl;
+    std::cout << "gamer " << b_.gridSymbol(gamerSymbol) << " winning? " << (result ? "Yes" : "No") << std::endl;
     return result;
 }
 
