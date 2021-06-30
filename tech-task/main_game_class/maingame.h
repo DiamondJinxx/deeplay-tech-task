@@ -27,6 +27,7 @@ public:
     int getBestCell(int gamer); // change best cell for gamer
 
     int minimax2(Board& b, int gamer); // with smart_gamer and gamer if
+    int minimax3(Board& b, int gamer); // with smart_gamer and gamer if
 };
 
 #endif // MAINGAME_H

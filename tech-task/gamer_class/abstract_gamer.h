@@ -1,5 +1,7 @@
 #ifndef ABSTRACT_GAMER_H
 #define ABSTRACT_GAMER_H
+/* */
+
 #include <vector>
 #include <iostream>
 #include <cstdlib>

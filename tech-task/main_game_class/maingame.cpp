@@ -126,14 +126,14 @@ int MainGame::minimax2(Board& b, int gamer)
         return 0;
 
     //b.print();
-    int move = -1;
-    int score = 0;//Losing moves are preferred to no move
+    ;//Losing moves are preferred to no move
     size_t i;
     std::vector<int> ec = b.emptyCells();
     size_t s = ec.size();
 
     if(gamer == sg_->getSymbol())
     {
+        int score = -10;
         for(i = 0; i < s; ++i)
         {
             b.map.at(ec.at(i)) = gamer;
@@ -142,13 +142,13 @@ int MainGame::minimax2(Board& b, int gamer)
             if(ts > score)
             {
                 score = ts;
-                move = ec.at(i);
             }
         }
         return score;
     }
     if(gamer == g_->getSymbol())
     {
+        int score = 10;
         for(i = 0; i < s; ++i)
         {
             b.map.at(ec.at(i)) = gamer;
@@ -157,7 +157,60 @@ int MainGame::minimax2(Board& b, int gamer)
             if(ts < score)
             {
                 score = ts;
-                move = ec.at(i);
+            }
+        }
+        return score;
+    }
+}
+
+int MainGame::minimax3(Board& b, int gamer)
+{
+    //How is the position like for player (their turn) on board?
+    bool wg = win(b, g_->getSymbol());
+    bool wsg = win(b, sg_->getSymbol());
+    if(wg)
+        return -1;
+    if(wsg)
+        return 1;
+    if(b.isFull())
+        return 0;
+
+    //b.print();
+    ;//Losing moves are preferred to no move
+    size_t s = b.map.size();
+
+    if(gamer == sg_->getSymbol())
+    {
+        int score = -10;
+        for(size_t i = 0; i < s; ++i)
+        {
+            if(b.map.at(i) == 0)
+            {
+                b.map.at(i) = gamer;
+                int ts = minimax2(b, -1 * gamer);
+                b.map.at(i) = 0;
+                if(ts > score)
+                {
+                    score = ts;
+                }
+            }
+        }
+        return score;
+    }
+    if(gamer == g_->getSymbol())
+    {
+        int score = 10;
+        for(size_t i = 0; i < s; ++i)
+        {
+            if(b.map.at(i) == 0)
+            {
+                b.map.at(i) = gamer;
+                int ts = minimax2(b, -1 * gamer);
+                b.map.at(i) = 0;
+                if(ts < score)
+                {
+                    score = ts;
+                }
             }
         }
         return score;
@@ -174,7 +227,8 @@ int MainGame::getBestCell(int gamer)
     {
         b_.map.at(ec.at(i)) = gamer;
 //        int ts = minimax(b_, gamer);
-        int ts = minimax2(b_, gamer);
+//        int ts = minimax2(b_, gamer);
+        int ts = minimax3(b_, gamer);
         if(ts > score)
         {
             score = ts;
