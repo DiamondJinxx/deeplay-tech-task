@@ -15,13 +15,18 @@ public:
     std::string saveFileName_;
     MainGame();
     void step(); // one step of game
-    bool win(int gamerSymbol); // check win of gamer
+    bool win(Board&, int gamerSymbol); // check win of gamer , Board& param needed for minimax recursive algo
     bool gameover(); // checking borad emptys
     bool run();
     void firstGamerStep();
     void secondGamerStep();
     void printBoard();
     bool save(std::string fn, int part_number,int winner,int steps); //save game result
+
+    int minimax(Board& b, int gamer); // minimax algo without alpha-beta pruning
+    int getBestCell(int gamer); // change best cell for gamer
+
+    int minimax2(Board& b, int gamer); // with smart_gamer and gamer if
 };
 
 #endif // MAINGAME_H

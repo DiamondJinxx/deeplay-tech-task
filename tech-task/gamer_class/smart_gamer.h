@@ -19,6 +19,7 @@ public:
 
     static SmartGamer* getGamer(int c); // static function for getting instance object
     virtual  bool nextStep(Board&) override;
+    void setBestStep(Board& b, int cell);
 };
 
 

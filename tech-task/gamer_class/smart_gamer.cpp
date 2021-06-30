@@ -24,6 +24,12 @@ bool SmartGamer::nextStep(Board& b)
         return false;
 }
 
+
+void SmartGamer::setBestStep(Board& board, int cell)
+{
+    board.map.at(cell) = m_symbol;
+}
+
 SmartGamer::~SmartGamer()
 {
     if(singl_)

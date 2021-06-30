@@ -26,8 +26,8 @@ void printMap(std::vector<std::vector<char>>& map)
 int main()
 {
     srand(time(static_cast<time_t>(0)));
-    Gamer* gamer = Gamer::getGamer(1);
-    SmartGamer *sg = SmartGamer::getGamer(-1);
+//    Gamer* gamer = Gamer::getGamer(1);
+//    SmartGamer *sg = SmartGamer::getGamer(-1);
 
     Board b;
     MainGame mg;
@@ -43,7 +43,7 @@ int main()
                mg.printBoard();
            }
        }
-     mg.printBoard();
+    // mg.printBoard();
     mg.save(mg.saveFileName_,1,mg.winner_, turn);
     return 0;
 }

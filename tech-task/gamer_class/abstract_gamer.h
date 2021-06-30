@@ -13,6 +13,7 @@ protected:
 public:
     virtual bool nextStep(Board& ) = 0;
     int getSymbol();
+    bool win(Board& );
 };
 
 #endif // ABSTRACT_GAMER_H
