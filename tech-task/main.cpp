@@ -23,7 +23,9 @@ void printMap(std::vector<std::vector<char>>& map)
         1) Board class?
         2)
 */
-int main()
+
+
+int main(int argc, char* argv[])
 {
     srand(time(static_cast<time_t>(0)));
 //    Gamer* gamer = Gamer::getGamer(1);
