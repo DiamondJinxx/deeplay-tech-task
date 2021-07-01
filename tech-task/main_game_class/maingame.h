@@ -22,12 +22,10 @@ public:
     void secondGamerStep();
     void printBoard();
     bool save(std::string fn, int part_number,int winner,int steps); //save game result
+    void reset();
 
     int minimax(Board& b, int gamer); // minimax algo without alpha-beta pruning
     int getBestCell(int gamer); // change best cell for gamer
-
-    int minimax2(Board& b, int gamer); // with smart_gamer and gamer if
-    int minimax3(Board& b, int gamer); // with smart_gamer and gamer if
 };
 
 #endif // MAINGAME_H
